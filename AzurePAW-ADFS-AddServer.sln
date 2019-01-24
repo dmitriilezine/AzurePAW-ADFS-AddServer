@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "AzurePAW-ADFS-AddServer", "AzurePAW-ADFS-AddServer\AzurePAW-ADFS-AddServer.deployproj", "{FBA4EBDD-E77D-420B-8C18-01D15AAFBF6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBA4EBDD-E77D-420B-8C18-01D15AAFBF6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBA4EBDD-E77D-420B-8C18-01D15AAFBF6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBA4EBDD-E77D-420B-8C18-01D15AAFBF6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBA4EBDD-E77D-420B-8C18-01D15AAFBF6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB1C9550-CB0F-4F41-B0F4-5DE24F809D0A}
+	EndGlobalSection
+EndGlobal
