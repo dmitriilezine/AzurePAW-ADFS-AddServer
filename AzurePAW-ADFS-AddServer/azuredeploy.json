@@ -124,7 +124,13 @@
       },
       "defaultValue": "10.0.5.6"
     },
-
+    "availabilitySetName": {
+      "type": "string",
+      "metadata": {
+        "description": "Must match the name of the availability set where this VM will be joining"
+      },
+      "defaultValue": "adfsAvailabiltySet"
+    },
     "ScriptsLocation": {
       "type": "string",
       "metadata": {
@@ -177,21 +183,21 @@
 
     "adfsVMName": "[parameters('adfsVMName')]",
 
-    "adfsVmDeployment": "CreateADFSVM",
+    "adfsVmDeployment": "[concat('Create-', parameters('adfsVMName'))]",
     "adfsVmDeploymentId": "[concat('Microsoft.Resources/deployments/', variables('adfsVmDeployment'))]",
 
-    "addServertoADFSDeployment": "addServerToADFSFarm",
+    "addServertoADFSDeployment": "[concat('Add-', parameters('adfsVMName'),'-toADFSFarm')]",
     "addServertoADFSDeploymentId": "[concat('Microsoft.Resources/deployments/', variables('addServertoADFSDeployment'))]",
 
     "deployVMDiagnosticsADFS": "deployVMDiagnosticsADFS",
     "deployVMDiagnosticsADFSId": "[concat('Microsoft.Resources/deployments/', variables('deployVMDiagnosticsADFS'))]",
-    
+
     "deployAntimalwareADFS": "deployAntimalwareADFS",
     "deployAntimalwareADFSId": "[concat('Microsoft.Resources/deployments/', variables('deployAntimalwareADFS'))]",
-    
+
     "encryptADFS": "encryptADFS",
     "encryptADFSId": "[concat('Microsoft.Resources/deployments/', variables('encryptADFS'))]",
-   
+
     "shortDomainName": "[split(parameters('domainName'),'.')[0]]",
     "domainSuffix": "[split(parameters('domainName'),'.')[1]]",
     "ouPathT0Devices": "[concat('OU=T0-Devices; OU=Tier 0; OU=Admin;', 'DC=',variables('shortDomainName'),'; DC=',variables('domainSuffix'))]",
@@ -208,7 +214,8 @@
     "secretskeyVaultID": "[concat('/subscriptions/', parameters('subscriptionID'), '/resourceGroups/', variables('secretsKeyVaultRG'), '/providers/Microsoft.KeyVault/vaults/', variables('secretsVaultName'))]",
     "CertForADFS": "[concat('https://', parameters('secretsVaultName'), '.vault.azure.net:443/secrets/', parameters('ADFSCertID'))]",
 
-    "adfsAvailabilitySetName": "adfsAvailabiltySet",
+    "adfsAvailabilitySetNameold": "adfsAvailabiltySet",
+    "adfsAvailabilitySetName": "[parameters('availabilitySetName')]",
 
     "imageOffer": "WindowsServer",
     "imagePublisher": "MicrosoftWindowsServer",
@@ -216,8 +223,8 @@
     "ilbADFSName": "[concat('ilbADFS',resourceGroup().name)]",
     "ilbADFSID": "[resourceId('Microsoft.Network/loadBalancers',variables('ilbADFSName'))]",
 
-    "adfsNICName": "[concat('ADFS-Nic',resourceGroup().name)]",
-    
+    "adfsNICName": "[concat(parameters('adfsVMName'),'-Nic',resourceGroup().name)]",
+
     "diagnosticsAccountid": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/',parameters('StorageAccountRG'), '/providers/','Microsoft.Storage/storageAccounts/', parameters('diagnosticsStorageAccountName'))]"
 
   },
