@@ -50,7 +50,7 @@
         "description": "Specify the name for the vNet to whcih this server will be deployed."
       }
     },
-    "existingVirtualNetworkResourceGroup": {
+    "existingVirtualNetworkRG": {
       "type": "string",
       "defaultValue": "Add vNet RG Name",
       "metadata": {
@@ -165,7 +165,7 @@
     "VMSize": "[parameters('VirtualMachineSize')]",
     "OSVersion": "2016-Datacenter",
 
-    "ADFSsubnetID": "[resourceId(parameters('existingVirtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVirtualNetworkName'), parameters('ADFSubnetName'))]",
+    "ADFSsubnetID": "[resourceId(parameters('existingVirtualNetworkRG'), 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVirtualNetworkName'), parameters('ADFSubnetName'))]",
 
     "primaryADFSIpAddress": "[parameters('adfsVMIPAddress')]",
 
@@ -403,7 +403,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
-        "[variables('adfsFarmTemplatesDeployment')]"
+        "[variables('addServertoADFSDeployment')]"
       ],
       "properties": {
         "mode": "Incremental",
